@@ -1,6 +1,14 @@
 [package]
 name = "snake"
 version = "0.1.0"
+authors = ["Augustus Bunce <contact@augustusbunce.com>"]
+license = "MIT"
+description = "A simple snake game written in Rust using the Piston game engine."
+readme = "README.md"
+homepage = "https://github.com/gusbuncedev/snake"
+repository = "https://github.com/gusbuncedev/snake"
+keywords = ["game", "snake", "piston", "rust"]
+categories = ["games"]
 edition = "2021"
 
 [dependencies]
