@@ -1,5 +1,5 @@
 [package]
-name = "gusbunce-snake"
+name = "rustysnake"
 version = "1.0.0"
 authors = ["Augustus Bunce <contact@augustusbunce.com>"]
 license = "MIT"

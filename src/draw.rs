@@ -47,3 +47,22 @@ pub fn draw_rectangle(
         g,
     );
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_to_coord() {
+        assert_eq!(to_coord(0), 0.0);
+        assert_eq!(to_coord(1), 25.0);
+        assert_eq!(to_coord(2), 50.0);
+    }
+
+    #[test]
+    fn test_to_coord_u32() {
+        assert_eq!(to_coord_u32(0), 0);
+        assert_eq!(to_coord_u32(1), 25);
+        assert_eq!(to_coord_u32(2), 50);
+    }
+}

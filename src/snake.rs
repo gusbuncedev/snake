@@ -5,7 +5,7 @@ use std::collections::LinkedList;
 use crate::draw::draw_block;
 
 const SNAKE_COLOR: Color = [0.00, 0.80, 0.00, 1.0];
-#[derive(Copy, Clone, PartialEq)]
+#[derive(Copy, Clone, PartialEq, Debug)]
 pub enum Direction {
     Up,
     Down,
@@ -23,6 +23,7 @@ impl Direction {
         }
     }
 }
+
 #[derive(Debug, Clone)]
 struct Block {
     x: i32,
@@ -130,5 +131,65 @@ impl Snake {
             }
         }
         return false;
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_snake_new() {
+        let snake = Snake::new(2, 2);
+        assert_eq!(snake.body.len(), 3);
+        assert_eq!(snake.head_position(), (4, 2));
+        assert_eq!(snake.head_direction(), Direction::Right);
+    }
+
+    #[test]
+    fn test_snake_move_forward() {
+        let mut snake = Snake::new(2, 2);
+        snake.move_forward(Some(Direction::Right));
+        assert_eq!(snake.head_position(), (5, 2));
+        assert_eq!(snake.body.len(), 3);
+
+        snake.move_forward(Some(Direction::Up));
+        assert_eq!(snake.head_position(), (5, 1));
+        assert_eq!(snake.body.len(), 3);
+
+        snake.move_forward(None);
+        assert_eq!(snake.head_position(), (5, 0));
+        assert_eq!(snake.body.len(), 3);
+    }
+
+    #[test]
+    fn test_snake_next_head() {
+        let snake = Snake::new(2, 2);
+        assert_eq!(snake.next_head(Some(Direction::Up)), (4, 1));
+        assert_eq!(snake.next_head(Some(Direction::Down)), (4, 3));
+        assert_eq!(snake.next_head(Some(Direction::Left)), (3, 2));
+        assert_eq!(snake.next_head(Some(Direction::Right)), (5, 2));
+        assert_eq!(snake.next_head(None), (5, 2));
+    }
+
+    #[test]
+    fn test_snake_overlap_tail() {
+        let mut snake = Snake::new(2, 2);
+        snake.move_forward(Some(Direction::Right));
+        snake.move_forward(Some(Direction::Right));
+        snake.move_forward(Some(Direction::Up));
+        snake.move_forward(Some(Direction::Left));
+        assert_eq!(snake.overlap_tail(3, 2), false);
+        assert_eq!(snake.overlap_tail(2, 2), false);
+    }
+
+    #[test]
+    fn test_snake_restore_tail() {
+        let mut snake = Snake::new(2, 2);
+        snake.move_forward(Some(Direction::Right));
+        snake.move_forward(Some(Direction::Right));
+        assert_eq!(snake.body.len(), 3);
+        snake.restore_tail();
+        assert_eq!(snake.body.len(), 4);
     }
 }

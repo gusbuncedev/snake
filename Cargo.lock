@@ -518,14 +518,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gusbunce-snake"
-version = "1.0.0"
-dependencies = [
- "piston_window",
- "rand",
-]
-
-[[package]]
 name = "half"
 version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1207,6 +1199,14 @@ checksum = "3ff8374aa04134254b7995b63ad3dc41c7f7236f69528b28553da7d72efaa967"
 dependencies = [
  "ab_glyph_rasterizer",
  "owned_ttf_parser 0.15.2",
+]
+
+[[package]]
+name = "rustysnake"
+version = "1.0.0"
+dependencies = [
+ "piston_window",
+ "rand",
 ]
 
 [[package]]
