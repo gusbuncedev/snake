@@ -1,6 +1,6 @@
 [package]
 name = "gusbunce-snake"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Augustus Bunce <contact@augustusbunce.com>"]
 license = "MIT"
 description = "A simple snake game written in Rust using the Piston game engine."
